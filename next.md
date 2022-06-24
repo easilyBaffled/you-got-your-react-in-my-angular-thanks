@@ -15,11 +15,17 @@
 - [x] wire in post selection
 	- [x] access navigation/routing
 	- [x] have NG & React change when route changes
-- [ ] update local redux state from angular
-	- [ ] create state slice
-	- [ ] connect slice to angular component
-	- [ ] update store
-	- [ ] reflect store change in React
+
+### Mixing Components
+
+- [ ] move PostDetail to angular
+
+### Sharing State
+
+- [ ] create state slice
+- [ ] connect slice to angular component
+- [ ] update store
+- [ ] reflect store change in React
 
 ## Connect
 
