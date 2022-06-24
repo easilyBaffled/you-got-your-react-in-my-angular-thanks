@@ -5,13 +5,25 @@
 - [ ] create router+MutationObserver example
 - [ ] create shared state example
 
-## The First Adventer
+## The First Adventure
+
 - [x] create PostList component in angular
 - [x] replicate HTML & CSS
 - [x] fill with mock data
-- [ ] adapt query to get data
-- [ ] get data in
-- [ ] get loading indicator working
-- [ ] wire in post selection
-  - [ ] access navigation/routing
-  - [ ] push
+- [x] adapt query to get data
+- [x] get data in
+- [x] wire in post selection
+	- [x] access navigation/routing
+	- [x] have NG & React change when route changes
+- [ ] update local redux state from angular
+	- [ ] create state slice
+	- [ ] connect slice to angular component
+	- [ ] update store
+	- [ ] reflect store change in React
+
+## Connect
+
+- [x] can i get an `onChange` hook for ng components just for debugging?
+- [ ] Can I make a shortcut for `mapStateToProps` so I don't need to explicitly have functions that
+  call `(state) => state`?
+- [ ] I should do something so that I don't have to call `store.dispatch(api.endpoints.getPosts.initiate())`
