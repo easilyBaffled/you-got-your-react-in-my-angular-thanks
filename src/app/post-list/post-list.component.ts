@@ -4,8 +4,6 @@ import {store} from '../../store'
 import {connect} from "@src/store/utils/connect";
 import {QueryResultSelectorResult} from "@reduxjs/toolkit/dist/query/core/buildSelectors";
 
-console.log(api.endpoints.getPosts)
-
 const connection = connect({
 	mapStateToProps: (state) => ({
 		posts: api.endpoints.getPosts.select()(state)

@@ -31,7 +31,6 @@ export class PostDetailComponent implements OnInit, AfterViewChecked {
 		this.route.paramMap.subscribe((params: ParamMap) => {
 			this.id = params.get('id')
 			store.dispatch(api.endpoints.getPost.initiate(this.id))
-
 		})
 	}
 

@@ -28,7 +28,7 @@ export class AppComponent {
 		// store.subscribe(this.savePosts.bind(this));
 		document.addEventListener('routeChange', (e: CustomEvent) => {
 			if (e.detail.url !== router.url)
-				this.router.navigate([e.detail.url]).then(console.log).catch(console.error);
+				this.router.navigate([e.detail.url])// .then(console.log).catch(console.error);
 
 		})
 	}
