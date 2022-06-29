@@ -1,3 +1,3 @@
 import fs from "fs";
 
-export const getFeatureList = () => fs.readdirSync( "./src/features" );
+export const getFeatureList = () => fs.readdirSync("./src/features");

@@ -1,31 +1,31 @@
 export const featureConfig = {
-    actions: function({ featureName, needs }) {
+    actions: function ({ featureName, needs }) {
         const featureRootIndex = needs
-            .map( ( s ) => `export * from './${s}'` )
-            .join( "\n" );
+            .map((s) => `export * from './${s}'`)
+            .join("\n");
 
         return needs.reduce(
-            ( acc, k ) =>
+            (acc, k) =>
                 acc.concat({
-                    path:     `src/features/${featureName}/${k}/index.jsx`,
+                    path: `src/features/${featureName}/${k}/index.jsx`,
                     template: `export const ${k} = "I think Plop.js is neat.";`,
-                    type:     "add"
+                    type: "add"
                 }),
             [
                 {
-                    path:     `src/features/${featureName}/index.jsx`,
+                    path: `src/features/${featureName}/index.jsx`,
                     template: featureRootIndex,
-                    type:     "add"
+                    type: "add"
                 }
             ]
         );
     },
     description: "Feature Generator",
-    prompts:     [
+    prompts: [
         {
             message: "Feature name",
-            name:    "featureName",
-            type:    "input"
+            name: "featureName",
+            type: "input"
         },
         {
             choices: [
@@ -35,8 +35,8 @@ export const featureConfig = {
                 { name: "API", value: "api" }
             ],
             message: "What do you need",
-            name:    "needs",
-            type:    "checkbox"
+            name: "needs",
+            type: "checkbox"
         }
     ]
 };

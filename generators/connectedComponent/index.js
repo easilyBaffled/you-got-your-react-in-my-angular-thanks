@@ -2,21 +2,21 @@ import { getFeatureList } from "../getFeatureList.js";
 import { detab } from "../detab.js";
 
 export const connectedComponent = {
-    actions: function({ name, featureName }) {
+    actions: function ({ name, featureName }) {
         const sourceDir = `src/features/${featureName}/components/`;
         const indexFile = sourceDir + `index.jsx`;
         const componentFile = sourceDir + `${name}.jsx`;
-        console.log( indexFile, componentFile );
-        const componentName = name.replace( /^(\w)/, ( $1 ) => $1.toUpperCase() );
+        console.log(indexFile, componentFile);
+        const componentName = name.replace(/^(\w)/, ($1) => $1.toUpperCase());
         return [
             {
-                path:     indexFile,
-                pattern:  /($)/,
+                path: indexFile,
+                pattern: /($)/,
                 template: `$1\nexport * from "./${name}";`,
-                type:     "modify"
+                type: "modify"
             },
             {
-                path:     componentFile,
+                path: componentFile,
                 template: detab`
 					import { connect } from "react-redux";
 					import { actions, selectors } from "../store";
@@ -36,17 +36,17 @@ export const connectedComponent = {
         ];
     },
     description: "Feature Generator",
-    prompts:     [
+    prompts: [
         {
             message: "Component name",
-            name:    "name",
-            type:    "input"
+            name: "name",
+            type: "input"
         },
         {
             choices: getFeatureList(),
             message: "Feature Name",
-            name:    "featureName",
-            type:    "rawlist"
+            name: "featureName",
+            type: "rawlist"
         }
     ]
 };
