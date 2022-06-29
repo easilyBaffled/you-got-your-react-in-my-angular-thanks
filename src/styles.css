@@ -2,11 +2,22 @@
 
 html,
 body {
-  font-family: sans-serif;
-}
-main {
-  background: rgba(255, 99, 71, 0.13);
+	font-family: sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+main {
+	/*background: rgba(255, 99, 71, 0.13);*/
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+#posts-container {
+	display: flex;
+}

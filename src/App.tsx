@@ -9,6 +9,7 @@ import {ErrorBoundary} from 'react-error-boundary'
 import {PostDetail, PostsManager} from "@src/features/posts";
 import {Portal} from "@src/components";
 import {useEffect} from "react";
+import debounce from "lodash/debounce";
 
 function ErrorFallback({error}) {
 	console.log(error)
@@ -24,16 +25,17 @@ function App() {
 	let loc = useLocation()
 	let nav = useNavigate()
 	useEffect(() => {
+		const debounceNav = debounce(nav, 500)
+
 		document.addEventListener('routeChange', (e: CustomEvent) => {
-			if (e.detail.url !== loc.pathname)
-				nav(e.detail.url)
+			if (e.detail.url !== loc.pathname) {
+				debounceNav(e.detail.url)
+			}
 		})
 	}, [])
 	return (
 
 		<Box>
-			<h1>react</h1>
-
 			<Portal selector="#posts-manager">
 				<PostsManager/>
 			</Portal>

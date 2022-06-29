@@ -136,13 +136,13 @@ export const PostsManager = () => {
 					<Box p={4} borderBottom="1px solid #eee">
 						<Heading size="sm">Posts</Heading>
 					</Box>
-					<Box p={4}>
-						<PostList/>
-					</Box>
+					{/*<Box p={4}>*/}
+					{/*	<PostList/>*/}
+					{/*</Box>*/}
 				</Box>
 				<Box flex={2}>
 					<Routes>
-						<Route path="/posts/:id" element={<PostDetail/>}/>
+						{/*<Route path="/posts/:id" element={<PostDetail/>}/>*/}
 						<Route element={<Center h="200px">
 							<Heading size="md">Select a post to edit!</Heading>
 						</Center>}/>

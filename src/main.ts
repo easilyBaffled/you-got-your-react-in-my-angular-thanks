@@ -9,6 +9,7 @@ import {worker} from "./mocks/browser";
 window.history.pushState = new Proxy(window.history.pushState, {
 	apply: (target, thisArg, argArray) => {
 		// force angular with https://stackoverflow.com/questions/40983055/how-to-reload-the-current-route-with-the-angular-2-router
+		// if (argArray[2] === location.pathname) return;
 		window.document.dispatchEvent(new CustomEvent('routeChange', {detail: {url: argArray[2]}}));
 		return target.apply(thisArg, argArray);
 	},

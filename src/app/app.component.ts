@@ -11,17 +11,7 @@ import {Router} from "@angular/router";
 	// changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-	postsUnsub;
 	posts = {};
-
-	savePosts() {
-		// const updates = api.endpoints.getPosts.select()(store.getState());
-		// // console.log(updates, this.posts);
-		// if (updates.data && !isEqual(updates, this.posts)) {
-		//   this.posts = updates;
-		//   console.log("posts", this.posts.status, this.posts.data);
-		// }
-	}
 
 	constructor(private router: Router) {
 		// this.postsUnsub = store.dispatch(api.endpoints.getPosts.initiate());
