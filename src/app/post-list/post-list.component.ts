@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnChanges, OnInit } from "@angular/core";
+import { AfterViewChecked, Component, OnInit } from "@angular/core";
 import { QueryResultSelectorResult } from "@reduxjs/toolkit/dist/query/core/buildSelectors";
 
 import { connect } from "@src/store/utils/connect";

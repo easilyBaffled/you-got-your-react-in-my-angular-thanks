@@ -8,9 +8,6 @@ import {
     FormLabel,
     Heading,
     Input,
-    List,
-    ListIcon,
-    ListItem,
     Spacer,
     Stat,
     StatLabel,
@@ -18,12 +15,9 @@ import {
     useToast
 } from "@chakra-ui/react";
 import { ChangeEvent, useState } from "react";
-import { MdBook } from "react-icons/md";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { Post, useAddPostMutation, useGetPostsQuery } from "../store";
-
-import { PostDetail } from "./PostDetail";
 
 const AddPost = () => {
     const initialValue = { name: "" };
@@ -57,14 +51,14 @@ const AddPost = () => {
         <Flex p={5}>
             <Box flex={10}>
                 <FormControl
-                    isInvalid={Boolean(post.name.length < 3 && post.name)}
+                    isInvalid={Boolean(post?.name.length < 3 && post?.name)}
                 >
                     <FormLabel htmlFor="name">Post name</FormLabel>
                     <Input
                         id="name"
                         name="name"
                         placeholder="Enter post name"
-                        value={post.name}
+                        value={post?.name}
                         onChange={handleChange}
                     />
                 </FormControl>
@@ -81,25 +75,6 @@ const AddPost = () => {
                 </Button>
             </Box>
         </Flex>
-    );
-};
-
-const PostList = () => {
-    const { data: posts, isLoading } = useGetPostsQuery();
-    const navigate = useNavigate();
-
-    if (isLoading) return <div>Loading</div>;
-
-    if (!posts) return <div>No posts :(</div>;
-
-    return (
-        <List spacing={3}>
-            {posts.map(({ id, name }) => (
-                <ListItem key={id} onClick={() => navigate(`/posts/${id}`)}>
-                    <ListIcon as={MdBook as any} color="green.500" /> {name}
-                </ListItem>
-            ))}
-        </List>
     );
 };
 

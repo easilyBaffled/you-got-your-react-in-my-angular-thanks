@@ -1,6 +1,5 @@
 import { AfterViewChecked, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { isEqual } from "lodash";
 
 import { connect } from "@src/store/utils/connect";
 

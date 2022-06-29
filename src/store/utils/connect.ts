@@ -10,7 +10,7 @@ export const connect =
         mapStateToProps
     }: {
         mapStateToProps: (any, component) => any;
-        mapDispatchToProps?: {};
+        mapDispatchToProps?: Record<string, unknown>;
     }) =>
     (component, store) =>
         store.subscribe(() => {

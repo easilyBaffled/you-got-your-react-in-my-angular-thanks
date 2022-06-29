@@ -1,5 +1,4 @@
-// @ts-nocheck
-import { useState, cloneElement, Children } from "react";
+import { useState, cloneElement, Children, ReactElement } from "react";
 import { createPortal } from "react-dom";
 
 function waitForElm(selector) {
@@ -7,7 +6,7 @@ function waitForElm(selector) {
         if (document.querySelector(selector))
             return resolve(document.querySelector(selector));
 
-        const observer = new MutationObserver((mutations) => {
+        const observer = new MutationObserver(() => {
             if (document.querySelector(selector)) {
                 resolve(document.querySelector(selector));
                 observer.disconnect();
@@ -48,7 +47,7 @@ export function Portal({ selector, children }) {
     );
 
     return createPortal(
-        Children.map(children, (c) =>
+        Children.map(children, (c: ReactElement) =>
             cloneElement(c, {
                 ...props
             })

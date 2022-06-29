@@ -1,9 +1,5 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { isEqual } from "lodash";
-
-import { api } from "@src/features/posts";
-import { store } from "@src/store";
 
 // select: initiate
 @Component({
