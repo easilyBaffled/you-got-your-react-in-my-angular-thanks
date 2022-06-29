@@ -4,16 +4,18 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { api as postsApi } from "@src/features/posts";
 
 export const store = configureStore({
-  reducer: {
+    // Adding the api middleware enables caching, invalidation, polling,
+// and other useful features of `rtk-query`.
+    middleware: ( getDefaultMiddleware ) =>
+        getDefaultMiddleware().concat( postsApi.middleware ),
+    
+    
+    reducer: {
     // Add the generated reducer as a specific top-level slice
-    [postsApi.reducerPath]: postsApi.reducer
-  },
-  // Adding the api middleware enables caching, invalidation, polling,
-  // and other useful features of `rtk-query`.
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(postsApi.middleware)
+        [ postsApi.reducerPath ]: postsApi.reducer
+    }
 });
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
 // see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
-setupListeners(store.dispatch);
+setupListeners( store.dispatch );
