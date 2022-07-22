@@ -1,0 +1,7 @@
+<mat-list *ngFor="let post of posts?.data ?? []">
+	<mat-list-item [routerLink]="'/posts/' + post.id">
+		<mat-icon color="primary">book</mat-icon>
+		{{ post.name }}
+	</mat-list-item>
+</mat-list>
+<h1>{{posts?.status}}</h1>
