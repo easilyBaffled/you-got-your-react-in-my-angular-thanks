@@ -11,10 +11,16 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { PostDetailComponent } from "./post-detail/post-detail.component";
 import { PostListComponent } from "./post-list/post-list.component";
+import { PortalHookComponent } from "./portal-hook/portal-hook.component";
 
 @NgModule({
     bootstrap: [AppComponent],
-    declarations: [AppComponent, PostListComponent, PostDetailComponent],
+    declarations: [
+        AppComponent,
+        PostListComponent,
+        PostDetailComponent,
+        PortalHookComponent
+    ],
     imports: [
         BrowserModule,
         ReactiveFormsModule,

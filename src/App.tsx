@@ -1,17 +1,10 @@
 import { Box, ChakraProvider } from "@chakra-ui/react";
-import debounce from "lodash/debounce";
 import * as React from "react";
 import { useEffect } from "react";
 import * as ReactDOM from "react-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import { Provider } from "react-redux";
-import {
-    Route,
-    Routes,
-    useLocation,
-    BrowserRouter,
-    useNavigate
-} from "react-router-dom";
+import { useLocation, BrowserRouter } from "react-router-dom";
 
 import { Portal } from "@src/components";
 import { PostDetail, PostsManager } from "@src/features/posts";
@@ -30,29 +23,33 @@ function ErrorFallback({ error }) {
 
 function App() {
     const loc = useLocation();
-    const nav = useNavigate();
+    // const nav = useNavigate();
     useEffect(() => {
-        const debounceNav = debounce(nav, 500);
+        // const debounceNav = debounce(nav, 500);
 
         document.addEventListener("routeChange", (e: CustomEvent) => {
-            if (e.detail.url !== loc.pathname) debounceNav(e.detail.url);
+            // if (e.detail.url !== loc.pathname) debounceNav(e.detail.url);
+            console.log(e.detail, location, history, loc);
         });
     }, []);
     return (
         <Box>
-            <Portal selector="#posts-manager">
+            <Portal selector="posts-manager">
                 <PostsManager />
             </Portal>
-            <Routes>
-                <Route
-                    path="/posts/:id"
-                    element={
-                        <Portal selector="#post-detail">
-                            <PostDetail />
-                        </Portal>
-                    }
-                />
-            </Routes>
+            <Portal selector="post-detail">
+                <PostDetail />
+            </Portal>
+            {/*<Routes>*/}
+            {/*	<Route*/}
+            {/*		path="/posts/:id"*/}
+            {/*		element={*/}
+            {/*			<Portal selector="post-detail">*/}
+            {/*				<PostDetail/>*/}
+            {/*			</Portal>*/}
+            {/*		}*/}
+            {/*	/>*/}
+            {/*</Routes>*/}
         </Box>
     );
 }

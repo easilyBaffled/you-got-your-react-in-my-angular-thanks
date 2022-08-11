@@ -10,8 +10,9 @@ import {
     Stack,
     useToast
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { debounce } from "lodash";
+import { match, MatchResult } from "path-to-regexp";
+import React, { useEffect, useState } from "react";
 
 import {
     useDeletePostMutation,
@@ -76,10 +77,28 @@ const PostJsonDetail = ({ id }: { id: string }) => {
     );
 };
 
-export const PostDetail = () => {
-    const { id } = useParams<{ id: any }>();
-    const navigate = useNavigate();
+function useParams(pathMatch: string) {
+    const [params, setParams] = useState({} as { [key: string]: any });
+    const matcher = match(pathMatch);
+    useEffect(() => {
+        document.addEventListener(
+            "routeChange",
+            debounce((e: CustomEvent) => {
+                console.log(e.detail, location);
+                setParams(
+                    (matcher(window.location.pathname) as MatchResult).params
+                );
+            })
+        );
+    }, []);
 
+    return params;
+}
+
+export const PostDetail = () => {
+    const { id } = useParams("/posts/:id");
+
+    console.log(id);
     const toast = useToast();
 
     const [isEditing, setIsEditing] = useState(false);
@@ -143,9 +162,11 @@ export const PostDetail = () => {
                             </Button>
                             <Button
                                 onClick={() =>
-                                    deletePost(id).then(() =>
-                                        navigate("/posts")
-                                    )
+                                    deletePost(id).then(() => {
+                                        console.log("deleted");
+                                        // navigate("/posts")
+                                        // window.history.pushState({}, '', "/posts")
+                                    })
                                 }
                                 disabled={isDeleting}
                                 colorScheme="red"
