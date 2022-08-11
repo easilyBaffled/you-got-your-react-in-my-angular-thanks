@@ -43,11 +43,16 @@ When most people heard what I was planning, their first thought was, "oh sure. W
 
 I have never used `React.createPortal` for its intended purpose. Which makes it funny that none of this would have worked without it. It boils down to this: You need to bind your React app to a DOM element with `ReactDOM.createRoot(someElem).render(<App />)` but within `App` you can bind individual components to other elements with `ReactDOM.createPortal( <Button />, someOtherElm)`.  Your `<Button>` will sit outside of the App's DOM tree but still benefit from the structure. So your App was wrapped in MUI's `<ThemeProvider theme={theme}>` `Button` would still be able to access `theme`.
 
-For this project, the top-level React component `App`  holds all of the stand-alone portal-ed components and sets up all of the contexts they may need to share. And each of those portal-ed components (literally wrapped with a `<Portal>` component) will hook onto DOM nodes that are created by the Angular app, that way, the React component can render within the Angular component. 
-
+For this project, the top-level React component `App`  holds all of the stand-alone portal-ed components and sets up all of the contexts they may need to share. And each of those portal-ed components (literally wrapped with a `<Portal>` component) will hook onto DOM nodes that are created by the Angular app. That way, the React component can render within the Angular component. 
 
 
 ### Redux (Toolkit)
+I have already read [You Might Not Need Redux.](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367), and this project falls into that *might* category. You see, once I had React components rendering within Angular components, I needed them to communicate. There are a number of possible solutions for communication. I encountered a few of them back in my AOL days, which can get very ugly. 
+I ruled out having the frameworks or components communicate directly with one another. It would have required a lot of extra wiring and shared context. All of that would make future refactoring a nightmare. And you should always be asking yourself, "how will this refactor?" when writing code.
+Instead, I chose to go with what I knew, a global store that held all relevant state. Angular and React could communicate *just* to the global store and not have to care that there was another framework doing the same.
+I chose to go with Redux because it was one of the few battle-tested frameworks-agnostic options. [Redux Toolkit](https://redux-toolkit.js.org/) (aka. the "right" way to write Redux) was incredibly easy to integrate and came with the benefit of [RTK Query](https://redux-toolkit.js.org/rtk-query/overview) for shared data fetching and caching.
+
 ### Connections
+
 
 ## TODOs
