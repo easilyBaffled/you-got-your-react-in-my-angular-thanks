@@ -36,7 +36,18 @@ When most people heard what I was planning, their first thought was, "oh sure. W
 - React Query-ish
 
 ## Architecture (As It Were)
+### [React Portals](https://reactjs.org/docs/portals.html)
+> Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.  
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-[React Official Docs](https://reactjs.org/docs/portals.html)
+
+I have never used `React.createPortal` for its intended purpose. Which makes it funny that none of this would have worked without it. It boils down to this: You need to bind your React app to a DOM element with `ReactDOM.createRoot(someElem).render(<App />)` but within `App` you can bind individual components to other elements with `ReactDOM.createPortal( <Button />, someOtherElm)`.  Your `<Button>` will sit outside of the App's DOM tree but still benefit from the structure. So your App was wrapped in MUI's `<ThemeProvider theme={theme}>` `Button` would still be able to access `theme`.
+
+For this project, the top-level React component `App`  holds all of the stand-alone portal-ed components and sets up all of the contexts they may need to share. And each of those portal-ed components (literally wrapped with a `<Portal>` component) will hook onto DOM nodes that are created by the Angular app, that way, the React component can render within the Angular component. 
+
+
+
 ### Redux (Toolkit)
 ### Connections
-### Portals
+
 ## TODOs
