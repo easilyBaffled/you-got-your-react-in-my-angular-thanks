@@ -48,7 +48,7 @@
         "@angular/compiler-cli": "~12.2.0",
         "@types/jasmine": "~3.8.0",
         "@types/node": "^12.11.1",
-        "@types/react": "18.0.10",
+        "@types/react": "18.0.25",
         "@types/react-dom": "18.0.5",
         "@types/react-redux": "7.1.24",
         "@types/react-router-dom": "^5.3.3",
